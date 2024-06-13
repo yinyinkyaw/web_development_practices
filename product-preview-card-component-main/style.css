@@ -1,0 +1,150 @@
+:root {
+    --clr-primary-500:  hsl(158, 36%, 37%);
+    --clr-primary-900: hsl(158, 36%, 30%);
+    --clr-secondary-100: hsl(30, 38%, 92%);
+
+    --clr-neutral-900: hsl(212, 21%, 14%);
+    --clr-neutral-500: hsl(228, 12%, 48%);
+    --clr-neutral-100: hsl(0, 0%, 100%);
+
+    --font-bold: 700;
+    --font-normal: 500;
+
+    --font-montserrat: "Montserrat";
+    --font-fraunces: "Fraunces";
+}
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+/*
+2. Remove default margin
+*/
+* {
+    margin: 0;
+}
+/*
+Typographic tweaks!
+3. Add accessible line-height
+4. Improve text rendering
+*/
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+/*
+5. Improve media defaults
+*/
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+/*
+6. Remove built-in form typography styles
+*/
+input, button, textarea, select {
+    font: inherit;
+}
+/*
+7. Avoid text overflows
+*/
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+/*
+8. Create a root stacking context
+*/
+#root, #__next {
+    isolation: isolate;
+}
+
+body {
+    background-color: var(--clr-secondary-100);
+    display: grid;
+    place-content: center;
+    color: var(--clr-neutral-500);
+    height: 100vh;
+    margin: 0 1rem;
+    font-family: var(--font-montserrat);
+}
+
+.flex-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.product {
+    --content-padding: 1.5rem;
+    --content-spacing: 1rem;
+
+    background-color: var(--clr-neutral-100);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+}
+
+.product__content {
+    display: grid;
+    padding: var(--content-padding);
+    gap: var(--content-spacing);
+}
+
+.product__category {
+    letter-spacing: .2rem;
+    font-size: .875rem;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: 2.3rem;
+    font-weight: var(--font-bold);
+    color: var(--clr-neutral-900);
+    line-height: 1;
+    font-family: var(--font-fraunces);
+}
+
+.product_current_price {
+    font-size: 2.3rem;
+    color: var(--clr-primary-500);
+    font-weight: var(--font-bold);
+    font-family: var(--font-fraunces);
+}
+
+.button {
+    border: none;
+    background-color: var(--clr-primary-500);
+    color: var(--clr-neutral-100);
+    border-radius: 0.5rem;
+    padding: 0.85rem 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    place-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.button:hover,
+.button:focus {
+    background-color: var(--clr-primary-900);
+}
+
+.button[data-icon="shopping-cart"]::before {
+    content: "";
+    width: 15px;
+    height: 16px;
+    background-image: url('./images/icon-cart.svg');
+}
+
+@media screen and (min-width: 600px) {
+    .product {
+        max-width: 600px;
+        grid-template-columns: 1fr 1fr;
+    }
+}
