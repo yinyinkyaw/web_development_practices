@@ -1,0 +1,22 @@
+[
+    {
+      "category": "Cart 1",
+      "customers": [10, 3, 4, 5]
+    },
+    {
+      "category": "Cart 2",
+      "customers": []
+    },
+    {
+      "category": "Cart 3",
+      "customers": []
+    },
+    {
+      "category": "Cart 4",
+      "customers": []
+    },
+    {
+      "category": "Cart 5",
+      "customers": []
+    }
+  ]
