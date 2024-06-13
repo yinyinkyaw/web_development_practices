@@ -1,0 +1,21 @@
+.app_container {
+  width: 100%;
+  max-width: 102.4rem;
+  height: 100vh;
+  height: 100dvh;
+  margin-inline: auto;
+  /* background-color: pink; */
+  position: relative;
+}
+
+.app_container > h1 {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  text-align: center;
+  padding: 4rem 0;
+  font-size: 3.2rem;
+}
+
+.carousel_slider_container {
+  /* box-shadow: 0px 4px 16px #eaeaea; */
+}
