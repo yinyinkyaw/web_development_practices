@@ -1,0 +1,13 @@
+.fab_wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* background-color: pink; */
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.float_button {
+  position: absolute;
+  inset: auto 2rem 2rem auto;
+}

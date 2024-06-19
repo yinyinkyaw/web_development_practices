@@ -1,0 +1,20 @@
+.fab_button {
+  --_button-size: 4.8rem;
+
+  width: var(--_button-size);
+  height: var(--_button-size);
+  border-radius: calc(var(--_button-size) / 2);
+  background-color: var(--color-indigo-800);
+  border: 0;
+  box-shadow: 0 4px 16px #eaeaea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+
+  &:active {
+    background-color: var(--color-indigo-900);
+  }
+}
