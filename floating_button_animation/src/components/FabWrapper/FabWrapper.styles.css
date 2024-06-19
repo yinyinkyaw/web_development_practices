@@ -4,7 +4,7 @@
   /* background-color: pink; */
   display: flex;
   flex-direction: column-reverse;
-  transition: height 300ms;
+  transition: height 500ms;
   transition-timing-function: ease;
   inset: auto 2rem 2rem auto;
   overflow-y: hidden;
