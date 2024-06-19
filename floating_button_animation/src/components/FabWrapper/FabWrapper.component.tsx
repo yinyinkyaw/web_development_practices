@@ -1,5 +1,5 @@
 import "./FabWrapper.styles.css";
-import FabButton from "@components/FabButton/FabButton.component";
+import FabTriggerButton from "@components/FabTriggerButton/FabTriggerButton.component";
 import AddIcon from "@icons/add.svg";
 import { Dispatch } from "react";
 type FabWrapperProps = {
@@ -11,12 +11,12 @@ type FabWrapperProps = {
 const FabWrapper = ({ children, open, onOpenChange }: FabWrapperProps) => {
   return (
     <div className="fab_wrapper">
-      <FabButton
-        className="float_button"
+      <FabTriggerButton
+        isOpen={open}
         onClick={() => onOpenChange((prev) => !prev)}
       >
         <AddIcon />
-      </FabButton>
+      </FabTriggerButton>
       {open && children}
     </div>
   );

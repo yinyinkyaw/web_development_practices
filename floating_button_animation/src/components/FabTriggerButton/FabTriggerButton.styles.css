@@ -1,0 +1,15 @@
+.fab_trigger_button {
+  position: absolute;
+  inset: auto 2rem 2rem auto;
+  transition: transform 100ms ease-in;
+
+  &:focus-within {
+    animation: rotate 100ms linear;
+  }
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(45deg);
+  }
+}
