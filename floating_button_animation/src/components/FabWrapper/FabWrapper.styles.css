@@ -1,8 +1,11 @@
 .fab_wrapper {
-  position: relative;
+  position: absolute;
   width: 100%;
-  height: 100%;
   /* background-color: pink; */
   display: flex;
   flex-direction: column-reverse;
+  transition: height 300ms;
+  transition-timing-function: ease;
+  inset: auto 2rem 2rem auto;
+  overflow-y: hidden;
 }

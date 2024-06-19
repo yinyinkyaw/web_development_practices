@@ -10,14 +10,14 @@ type FabWrapperProps = {
 
 const FabWrapper = ({ children, open, onOpenChange }: FabWrapperProps) => {
   return (
-    <div className="fab_wrapper">
+    <div className="fab_wrapper" style={{ height: open ? "400px" : "7rem" }}>
       <FabTriggerButton
         isOpen={open}
         onClick={() => onOpenChange((prev) => !prev)}
       >
         <AddIcon />
       </FabTriggerButton>
-      {open && children}
+      {children}
     </div>
   );
 };
