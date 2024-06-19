@@ -1,3 +1,12 @@
+.box_container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: fit-content;
+  height: fit-content;
+  gap: 2rem;
+}
+
 .box {
   width: 10rem;
   height: 10rem;
@@ -10,16 +19,12 @@
   border: 1px solid lime;
   background-color: transparent;
   cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 
 .box.active {
   background-color: rgba(53, 255, 53, 0.2);
-}
-
-.box_container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  width: fit-content;
-  height: fit-content;
 }
