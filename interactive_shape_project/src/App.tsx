@@ -5,17 +5,18 @@ const BOX = Array.from({ length: 3 }).map(() =>
   Array.from({ length: 3 }).map(() => 0)
 );
 function App() {
-  const [clickPoints, setClickPoints] = useState<Array<Array<number>>>(BOX);
-  // const [clickOrders, setClickOrders] = useState();
+  const [newBox, setNewBox] = useState<Array<Array<number>>>(BOX);
+  const [clickOrders, setClickOrders] = useState<Array<Array<number>>>([]);
 
-  const handleClick = (point: Array<number>) => {
-    const modifyClickPoints = clickPoints?.map((row, rowId) =>
-      rowId === point[0]
-        ? row.map((col, colIndex) => (colIndex === point[1] ? 1 : col))
+  const handleClick = (rowIndex: number, colIndex: number) => {
+    const modifyClickPoints = newBox?.map((row, rowId) =>
+      rowId === rowIndex
+        ? row.map((col, colId) => (colId === colIndex ? 1 : col))
         : row
     );
 
-    setClickPoints(modifyClickPoints);
+    setClickOrders([...clickOrders, [rowIndex, colIndex]]);
+    setNewBox(modifyClickPoints);
   };
 
   return (
@@ -23,9 +24,9 @@ function App() {
       {BOX.map((row, rowIndex) =>
         row.map((_, colIndex) => (
           <button
-            disabled={!!clickPoints[rowIndex][colIndex]}
-            className={`box ${clickPoints[rowIndex][colIndex] && "active"}`}
-            onClick={() => handleClick([rowIndex, colIndex])}
+            disabled={!!newBox[rowIndex][colIndex]}
+            className={`box ${newBox[rowIndex][colIndex] && "active"}`}
+            onClick={() => handleClick(rowIndex, colIndex)}
           >
             {rowIndex} x {colIndex}
           </button>
