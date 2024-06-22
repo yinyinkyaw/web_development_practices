@@ -69,13 +69,6 @@ export default function App() {
           ))
         )}
       </div>
-      <div>
-        {clickOrders?.map((row) => (
-          <div className="box small">
-            {row[0]} x {row[1]}
-          </div>
-        ))}
-      </div>
     </div>
   );
 }
