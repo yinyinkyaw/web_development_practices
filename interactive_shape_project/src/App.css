@@ -25,6 +25,19 @@
   }
 }
 
+.box.small {
+  width: 6rem;
+  height: 6rem;
+}
+
 .box.active {
   background-color: rgba(53, 255, 53, 0.2);
+}
+
+.app_container {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
