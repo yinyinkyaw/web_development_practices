@@ -63,9 +63,7 @@ export default function App() {
               disabled={!!newBox[rowIndex][colIndex]}
               className={`box ${newBox[rowIndex][colIndex] && "active"}`}
               onClick={() => handleClick(rowIndex, colIndex)}
-            >
-              {rowIndex} x {colIndex}
-            </button>
+            ></button>
           ))
         )}
       </div>
