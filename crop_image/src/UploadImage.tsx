@@ -27,6 +27,8 @@ const UploadImage = () => {
         cropperRef?.current as Area
       );
 
+      toast.success("Save Image Successfully!");
+
       setCroppedImage(image as Blob);
       setIsOpen(false);
     }

@@ -3,28 +3,22 @@ import {
   Dispatch,
   InputHTMLAttributes,
   SetStateAction,
-  useMemo,
 } from "react";
 
 interface SliderProps extends InputHTMLAttributes<HTMLInputElement> {
   value: number;
   setValue: Dispatch<SetStateAction<number>>;
-  minValue?: number;
-  maxValue?: number;
+  min?: number;
+  max?: number;
 }
 
 const Slider = ({
   value,
   setValue,
-  minValue = 1,
-  maxValue = 100,
+  min = 1,
+  max = 100,
   ...other
 }: SliderProps) => {
-  const normalize = useMemo(
-    () => Math.round((value * 100) / maxValue),
-    [value, maxValue]
-  );
-
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setValue(parseInt(value, 10));
@@ -34,9 +28,10 @@ const Slider = ({
       type="range"
       id="slider"
       name="slider"
-      min={minValue}
-      max={maxValue}
-      value={normalize}
+      min={min}
+      max={max}
+      step={0.1}
+      value={value}
       onChange={handleChange}
       {...other}
     />

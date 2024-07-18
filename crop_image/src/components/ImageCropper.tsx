@@ -34,7 +34,7 @@ const ImageCropper = ({
           onCropComplete={onCropComplete}
         />
       </div>
-      {showSlider && <Slider value={zoom} setValue={setZoom} />}
+      {showSlider && <Slider value={zoom} min={1} max={3} setValue={setZoom} />}
     </Fragment>
   );
 };
