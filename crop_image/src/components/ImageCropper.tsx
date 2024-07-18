@@ -1,26 +1,25 @@
-import { useCallback, useState } from "react";
+import { MutableRefObject, useState } from "react";
 import Cropper, { Area, Point } from "react-easy-crop";
-
 interface ImageCropperProps {
   image: string;
+  cropperPixel: MutableRefObject<Area | null>;
 }
-const ImageCropper = ({ image }: ImageCropperProps) => {
-  const [zoom, setZoom] = useState(1);
-  const [crop, setCrop] = useState<Point>({ x: 0, y: 0 });
 
-  const onCropComplete = useCallback(
-    (croppedArea: Area, croppedAreaPixels: Area) => {
-      console.log(croppedArea, croppedAreaPixels);
-    },
-    []
-  );
+const ImageCropper = ({ image, cropperPixel }: ImageCropperProps) => {
+  const [crop, setCrop] = useState<Point>({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+
+  const onCropComplete = (_: Area, pixel: Area) => {
+    cropperPixel.current = pixel;
+  };
+
   return (
     <Cropper
-      zoom={zoom}
-      onZoomChange={setZoom}
-      crop={crop}
-      onCropChange={setCrop}
       image={image}
+      crop={crop}
+      zoom={zoom}
+      onCropChange={setCrop}
+      onZoomChange={setZoom}
       onCropComplete={onCropComplete}
     />
   );
