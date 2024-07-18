@@ -21,7 +21,7 @@ const Slider = ({
 }: SliderProps) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    setValue(parseInt(value, 10));
+    setValue(parseFloat(value));
   };
   return (
     <input
