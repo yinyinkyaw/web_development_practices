@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 
 interface FileUploadButtonProps {
   children: React.ReactNode;
@@ -8,10 +8,12 @@ const FileUploadButton = ({
   handleUpload,
   children,
 }: FileUploadButtonProps) => {
+  const [file, setFile] = useState("");
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
-    if (files) {
+    if (files && files?.length > 0) {
       handleUpload(files);
+      setFile("");
     }
   };
   return (
@@ -20,8 +22,9 @@ const FileUploadButton = ({
       <input
         type="file"
         accept="image/*"
+        value={file}
         onChange={onChange}
-        className="absolute inset-0 opacity-0"
+        className="absolute inset-0 opacity-0 w-full h-full border border-lime-500"
       />
     </div>
   );
