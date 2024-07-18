@@ -23,7 +23,7 @@ const Modal = ({
         <div className="w-screen h-screen fixed inset-0 bg-gray-100 flex items-center justify-center">
           <div
             className={clsx(
-              "max-w-5xl w-full rounded-xl bg-white h-fit px-7 py-8 grid gap-4 shadow-xl",
+              "max-w-5xl w-full rounded-xl bg-white h-fit px-7 py-8 grid gap-8 shadow-xl",
               modalStyles
             )}
           >

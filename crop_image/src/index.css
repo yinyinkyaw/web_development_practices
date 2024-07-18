@@ -19,3 +19,9 @@
 html {
   font-size: 62.5%;
 }
+
+@layer components {
+  input[type="range"]::-webkit-slider-thumb {
+    @apply appearance-none w-6 h-6 bg-white rounded-full outline outline-4 outline-offset-1 outline-indigo-500;
+  }
+}
