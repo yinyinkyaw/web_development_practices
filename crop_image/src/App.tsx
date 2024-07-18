@@ -4,20 +4,31 @@ import FileUploadButton from "@components/FileUploadButton";
 import Modal from "@components/Modal.component";
 import ImageCropper from "@components/ImageCropper";
 import { Area } from "react-easy-crop";
+import getCroppedImg from "utils";
 
 function App() {
   const cropperRef = useRef<Area | null>(null);
   const [uploadFile, setUploadFile] = useState<File | null>(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [croppedImage, setCroppedImage] = useState("");
 
   const handleUploadFile = (files: FileList) => {
     setIsOpen(true);
     setUploadFile(files[0]);
   };
 
-  const handleSaveImage = () => {
+  const handleSaveImage = async () => {
     console.log("cropped area::", cropperRef?.current);
     // downloadImage(croppedImage);
+    if (uploadFile && cropperRef) {
+      const image = await getCroppedImg(
+        URL.createObjectURL(uploadFile),
+        cropperRef?.current as Area
+      );
+
+      setCroppedImage(image as string);
+      setIsOpen(false);
+    }
   };
 
   return (
@@ -50,6 +61,13 @@ function App() {
           Crop and Save
         </button>
       </Modal>
+      {croppedImage && (
+        <img
+          src={croppedImage}
+          alt="cropped image"
+          className="mt-4 rounded-full w-[100px] h-[100px] object-cover"
+        />
+      )}
     </Fragment>
   );
 }
