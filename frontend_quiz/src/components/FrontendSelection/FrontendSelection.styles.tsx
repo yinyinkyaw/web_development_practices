@@ -30,6 +30,7 @@ export const useStyles = tss.create({
     zIndex: "1",
     "@media only screen and (max-width: 904px)": {
       gridTemplateColumns: "1fr",
+      placeItems: "center",
     },
   },
   instruction: {
@@ -48,6 +49,8 @@ export const useStyles = tss.create({
     display: "flex",
     flexDirection: "column",
     gap: "2rem",
+    width: "100%",
+    maxWidth: "56rem",
   },
 });
 
