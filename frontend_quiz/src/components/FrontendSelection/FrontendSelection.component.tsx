@@ -1,4 +1,5 @@
 import { tss } from "tss-react";
+import BackgroundImage from "@/images/pattern-background-desktop-dark.svg";
 
 const FrontendSelection = () => {
   const { classes, cx } = useStyles();
@@ -6,6 +7,7 @@ const FrontendSelection = () => {
   return (
     <section className={cx(classes.root)}>
       <h2 className={cx(classes.header)}>Hello</h2>
+      <BackgroundImage />
     </section>
   );
 };
@@ -13,9 +15,11 @@ const FrontendSelection = () => {
 const useStyles = tss.create({
   root: {
     backgroundColor: "#eaeaea",
+    width: "100%",
+    height: "100%",
   },
   header: {
-    color: "red",
+    color: "blue",
     fontSize: "2.4rem",
   },
 });
