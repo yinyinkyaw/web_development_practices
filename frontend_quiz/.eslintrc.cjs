@@ -8,12 +8,11 @@ module.exports = {
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
   parser: "@typescript-eslint/parser",
-  plugins: ["react-refresh", "tss-unused-classes"],
+  plugins: ["react-refresh"],
   rules: {
     "react-refresh/only-export-components": [
       "warn",
       { allowConstantExport: true },
     ],
-    "tss-unused-classes/unused-classes": "warn",
   },
 };

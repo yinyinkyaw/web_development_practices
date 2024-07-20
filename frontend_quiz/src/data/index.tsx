@@ -1,8 +1,13 @@
+import HtmlIcon from "@/icons/icon-html.svg";
+import CssIcon from "@/icons/icon-css.svg";
+import JsIcon from "@/icons/icon-js.svg";
+import AccessibilityIcon from "@/icons/icon-accessibility.svg";
+
 export const DATA = {
   quizzes: [
     {
       title: "HTML",
-      icon: "/icon-html.svg",
+      icon: <HtmlIcon />,
       questions: [
         {
           question: "What does HTML stand for?",
@@ -87,7 +92,7 @@ export const DATA = {
     },
     {
       title: "CSS",
-      icon: "/icon-css.svg",
+      icon: <CssIcon />,
       questions: [
         {
           question: "What does CSS stand for?",
@@ -166,7 +171,7 @@ export const DATA = {
     },
     {
       title: "JavaScript",
-      icon: "/icon-js.svg",
+      icon: <JsIcon />,
       questions: [
         {
           question:
@@ -265,7 +270,7 @@ export const DATA = {
     },
     {
       title: "Accessibility",
-      icon: "/icon-accessibility.svg",
+      icon: <AccessibilityIcon />,
       questions: [
         {
           question: "What does 'WCAG' stand for?",
