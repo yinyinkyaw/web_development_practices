@@ -1,26 +1,6 @@
-import { Subject } from "@/interfaces/quiz";
 import { tss } from "tss-react";
 
 export const useStyles = tss.create({
-  root: {
-    height: "100vh",
-    backgroundColor: "var(--background-color)",
-    color: "var(--text-color)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: "12rem 0",
-    position: "relative",
-  },
-  imageContainer: {
-    position: "absolute",
-    inset: 0,
-    height: "fit-content",
-    "& > svg": {
-      width: "100vw",
-      height: "100vh",
-    },
-  },
   content: {
     width: "min(var(--screen-size), 100% - 8rem)",
     marginInline: "auto",
@@ -54,41 +34,22 @@ export const useStyles = tss.create({
   },
 });
 
-export const subjectStyles = tss
-  .withParams<{ type: Subject }>()
-  .create(({ type }) => ({
-    card: {
-      width: "100%",
-      padding: "1.5rem",
-      backgroundColor: "var(--subject-color)",
-      display: "flex",
-      alignItems: "center",
-      borderRadius: "1.5rem",
-      fontSize: "1.8rem",
-      fontWeight: "500",
-      gap: "2rem",
-      cursor: "pointer",
-      transition: "transform 200ms ease-in-out",
-      "&:hover": {
-        transform: "scale(1.02)",
-        boxShadow: "0 2px 8px hsl(from var(--text-color-700) h s l / 40%)",
-      },
+export const subjectStyles = tss.create({
+  card: {
+    width: "100%",
+    padding: "1.5rem",
+    backgroundColor: "var(--subject-color)",
+    display: "flex",
+    alignItems: "center",
+    borderRadius: "1.5rem",
+    fontSize: "1.8rem",
+    fontWeight: "500",
+    gap: "2rem",
+    cursor: "pointer",
+    transition: "transform 200ms ease-in-out",
+    "&:hover": {
+      transform: "scale(1.02)",
+      boxShadow: "0 2px 8px hsl(from var(--text-color-700) h s l / 40%)",
     },
-    iconContainer: {
-      width: "4rem",
-      height: "4rem",
-      borderRadius: "0.8rem",
-      display: "grid",
-      "place-items": "center",
-      backgroundColor: `
-        ${type === "HTML" ? "var(--color-html-icon)" : ""}
-        ${type === "CSS" ? "var(--color-css-icon)" : ""}
-        ${type === "JavaScript" ? "var(--color-js-icon)" : ""}
-        ${type === "Accessibility" ? "var(--color-accessibility-icon)" : ""}
-      `,
-      "& > svg": {
-        width: "3.2rem",
-        height: "3.2rem",
-      },
-    },
-  }));
+  },
+});

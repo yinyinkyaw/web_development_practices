@@ -1,8 +1,9 @@
 import * as styles from "./FrontendSelection.styles";
-import BackgroundImage from "@/images/pattern-background-desktop-dark.svg";
 import { Quiz, Subject } from "@/interfaces/quiz";
+import DefaultLayout from "layout/DefaultLayout";
 import { useQuizStore } from "store/quiz/quizStore";
 import { getSubjects } from "utils";
+import QuizSubjectIcon from "../QuizSubjectIcon/QuizSubjectIcon.component";
 
 const FrontendSelection = () => {
   const { setQuiz } = useQuizStore((state) => state);
@@ -13,7 +14,7 @@ const FrontendSelection = () => {
     setQuiz(quiz);
   };
   return (
-    <section className={cx(classes.root)}>
+    <DefaultLayout>
       <div className={cx(classes.content)}>
         <div>
           <h2 className={cx(classes.heading)}>
@@ -34,10 +35,7 @@ const FrontendSelection = () => {
           ))}
         </div>
       </div>
-      <div className={cx(classes.imageContainer)}>
-        <BackgroundImage />
-      </div>
-    </section>
+    </DefaultLayout>
   );
 };
 
@@ -53,7 +51,7 @@ const SubjectCard = ({
   const { classes, cx } = styles.subjectStyles({ type: text });
   return (
     <div className={cx(classes.card)} onClick={handleSelect}>
-      <div className={cx(classes.iconContainer)}>{icon}</div>
+      <QuizSubjectIcon title={text} icon={icon} />
       <p>{text}</p>
     </div>
   );
