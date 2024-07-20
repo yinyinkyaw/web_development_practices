@@ -1,11 +1,17 @@
 import * as styles from "./FrontendSelection.styles";
 import BackgroundImage from "@/images/pattern-background-desktop-dark.svg";
-import { Subject } from "@/interfaces/quiz";
+import { Quiz, Subject } from "@/interfaces/quiz";
+import { useQuizStore } from "store/quiz/quizStore";
 import { getSubjects } from "utils";
 
 const FrontendSelection = () => {
+  const { setQuiz } = useQuizStore((state) => state);
   const { classes, cx } = styles.useStyles();
   const subjects = getSubjects();
+
+  const onSelectQuiz = (quiz: Quiz["title"]) => {
+    setQuiz(quiz);
+  };
   return (
     <section className={cx(classes.root)}>
       <div className={cx(classes.content)}>
@@ -23,6 +29,7 @@ const FrontendSelection = () => {
               icon={info.icon}
               text={info.title as Subject}
               key={index}
+              handleSelect={() => onSelectQuiz(info.title)}
             />
           ))}
         </div>
@@ -37,13 +44,15 @@ const FrontendSelection = () => {
 const SubjectCard = ({
   icon,
   text,
+  handleSelect,
 }: {
   icon: React.ReactNode;
   text: Subject;
+  handleSelect: () => void;
 }) => {
   const { classes, cx } = styles.subjectStyles({ type: text });
   return (
-    <div className={cx(classes.card)}>
+    <div className={cx(classes.card)} onClick={handleSelect}>
       <div className={cx(classes.iconContainer)}>{icon}</div>
       <p>{text}</p>
     </div>
