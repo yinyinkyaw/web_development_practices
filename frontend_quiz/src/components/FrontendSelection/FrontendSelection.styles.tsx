@@ -3,7 +3,7 @@ import { tss } from "tss-react";
 
 export const useStyles = tss.create({
   root: {
-    height: "100%",
+    height: "100vh",
     backgroundColor: "var(--background-color)",
     color: "var(--text-color)",
     display: "flex",
@@ -65,6 +65,11 @@ export const subjectStyles = tss
       fontWeight: "500",
       gap: "2rem",
       cursor: "pointer",
+      transition: "transform 200ms ease-in-out",
+      "&:hover": {
+        transform: "scale(1.02)",
+        boxShadow: "0 2px 8px hsl(from var(--text-color-700) h s l / 40%)",
+      },
     },
     iconContainer: {
       width: "4rem",
