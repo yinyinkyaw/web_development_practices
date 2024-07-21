@@ -50,7 +50,7 @@ const answerStyles = tss.create({
     padding: "1.5rem 1rem",
     borderRadius: "1rem",
     backgroundColor: "var(--subject-color)",
-    color: "white",
+    color: "var(--text-color)",
     fontSize: "2rem",
     fontWeight: 500,
     textAlign: "left",

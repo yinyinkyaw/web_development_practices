@@ -1,5 +1,8 @@
 import { tss } from "tss-react";
-import BackgroundImage from "@/images/pattern-background-desktop-dark.svg";
+import DarkBackgroundImage from "@/images/pattern-background-desktop-dark.svg";
+import LightBackgroundImage from "@/images/pattern-background-desktop-light.svg";
+import ThemeSwitcher from "@/components/ThemeSwitcher/ThemeSwitcher.component";
+import { useThemeStore } from "store/theme/themeStore";
 
 interface DefaultLayoutProps {
   children: React.ReactNode;
@@ -7,15 +10,20 @@ interface DefaultLayoutProps {
 }
 
 const DefaultLayout = ({ children, heading }: DefaultLayoutProps) => {
+  const { theme } = useThemeStore((state) => state);
   const { classes, cx } = layoutStyles();
+
   return (
     <section className={cx(classes.root)}>
       <div className={cx(classes.content)}>
-        <div className={cx(classes.heading)}>{heading}</div>
+        <div className={cx(classes.heading)}>
+          {heading}
+          <ThemeSwitcher />
+        </div>
         {children}
       </div>
       <div className={cx(classes.imageContainer)}>
-        <BackgroundImage />
+        {theme === "dark" ? <DarkBackgroundImage /> : <LightBackgroundImage />}
       </div>
     </section>
   );

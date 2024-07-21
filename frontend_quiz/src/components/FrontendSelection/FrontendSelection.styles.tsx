@@ -47,6 +47,7 @@ export const subjectStyles = tss.create({
     gap: "2rem",
     cursor: "pointer",
     transition: "transform 200ms ease-in-out",
+    boxShadow: "18px 16px 40px 0px rgba(143, 160, 193, .14)",
     "&:hover": {
       transform: "scale(1.02)",
       boxShadow: "0 2px 8px hsl(from var(--text-color-700) h s l / 40%)",
