@@ -8,7 +8,7 @@ import { useThemeStore } from "store/theme/themeStore";
 
 const ThemeSwitcher = () => {
   const { theme, setTheme } = useThemeStore((state) => state);
-  const { classes, cx } = switcherStyle();
+  const { classes, cx } = switcherStyle({ isSelected: theme === "light" });
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -31,24 +31,53 @@ const ThemeSwitcher = () => {
   return (
     <div className={cx(classes.container)}>
       {theme === "dark" ? <LightSunIcon /> : <DarkSunIcon />}
-      <input
-        type="checkbox"
-        className={cx(classes.switch)}
-        checked={theme === "light"}
-        onChange={onThemeChange}
-      />
+      <label className={cx(classes.switch)}>
+        <input
+          type="checkbox"
+          checked={theme === "light"}
+          onChange={onThemeChange}
+        />
+        <span className={cx(classes.slider)} />
+      </label>
       {theme === "dark" ? <LightMoonIcon /> : <DarkMoonIcon />}
     </div>
   );
 };
 
-const switcherStyle = tss.create({
-  container: {
-    display: "flex",
-    alignItems: "center",
-    gap: "1rem",
-  },
-  switch: {},
-});
+const switcherStyle = tss
+  .withParams<{ isSelected: boolean }>()
+  .create(({ isSelected }) => ({
+    container: {
+      display: "flex",
+      alignItems: "center",
+      gap: "1rem",
+      width: "fit-content",
+      height: "max-content",
+    },
+    switch: {
+      width: "6rem",
+      backgroundColor: "var(--action-btn-color)",
+      cursor: "pointer",
+      borderRadius: "4rem",
+      padding: ".4rem",
+      display: "flex",
+      justifyContent: `${isSelected ? "flex-end" : "flex-start"}`,
+      transition: "all 200ms linear",
+
+      "& > input": {
+        opacity: 0,
+        width: 0,
+        height: 0,
+      },
+    },
+    slider: {
+      "--_circle-size": "2.4rem",
+      inset: ".4rem",
+      width: "2.4rem",
+      height: "2.4rem",
+      backgroundColor: "white",
+      borderRadius: "50%",
+    },
+  }));
 
 export default ThemeSwitcher;

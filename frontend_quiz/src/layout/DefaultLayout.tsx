@@ -11,7 +11,7 @@ interface DefaultLayoutProps {
 
 const DefaultLayout = ({ children, heading }: DefaultLayoutProps) => {
   const { theme } = useThemeStore((state) => state);
-  const { classes, cx } = layoutStyles();
+  const { classes, cx } = layoutStyles({ hasHeading: !!heading });
 
   return (
     <section className={cx(classes.root)}>
@@ -29,38 +29,40 @@ const DefaultLayout = ({ children, heading }: DefaultLayoutProps) => {
   );
 };
 
-const layoutStyles = tss.create({
-  root: {
-    minHeight: "100vh",
-    height: "max-content",
-    position: "relative",
-    backgroundColor: "var(--background-color)",
-    color: "var(--text-color)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: "9rem 0",
-  },
-  imageContainer: {
-    position: "absolute",
-    inset: 0,
-    height: "fit-content",
-    "& > svg": {
-      width: "100vw",
-      height: "100vh",
+const layoutStyles = tss
+  .withParams<{ hasHeading: boolean }>()
+  .create(({ hasHeading }) => ({
+    root: {
+      minHeight: "100vh",
+      height: "max-content",
+      position: "relative",
+      backgroundColor: "var(--background-color)",
+      color: "var(--text-color)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "9rem 0",
     },
-  },
-  content: {
-    width: "100%",
-    zIndex: "10",
-  },
-  heading: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    width: "min(var(--screen-size), 100% - 8rem)",
-    marginInline: "auto",
-    marginBottom: "5rem",
-  },
-});
+    imageContainer: {
+      position: "absolute",
+      inset: 0,
+      height: "fit-content",
+      "& > svg": {
+        width: "100vw",
+        height: "100vh",
+      },
+    },
+    content: {
+      width: "100%",
+      zIndex: "10",
+    },
+    heading: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: `${hasHeading ? "space-between" : "flex-end"}`,
+      width: "min(var(--screen-size), 100% - 8rem)",
+      marginInline: "auto",
+      marginBottom: "5rem",
+    },
+  }));
 export default DefaultLayout;
