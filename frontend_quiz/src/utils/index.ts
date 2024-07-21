@@ -1,3 +1,4 @@
+import { Quiz } from "@/interfaces/quiz";
 import { DATA } from "data";
 
 export function getSubjects() {
@@ -6,4 +7,8 @@ export function getSubjects() {
 
 export function getQuizByTitle(title: string) {
   return DATA.quizzes.find((quiz) => quiz.title === title);
+}
+
+export function getQuestionByIndex(quiz: Quiz, idx: number) {
+  return quiz?.questions.find((_, index) => index === idx);
 }

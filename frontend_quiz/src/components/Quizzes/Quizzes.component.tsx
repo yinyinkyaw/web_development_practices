@@ -2,10 +2,43 @@ import DefaultLayout from "layout/DefaultLayout";
 import { useQuizStore } from "store/quiz/quizStore";
 import { tss } from "tss-react";
 import QuizSubjectIcon from "../QuizSubjectIcon/QuizSubjectIcon.component";
+import { FormEvent, useEffect, useState } from "react";
+import { getQuestionByIndex } from "utils";
+import Answers from "../Answer/Answers.component";
 
 const Quizzes = () => {
-  const { quiz } = useQuizStore((state) => state);
+  const { quiz, question, setSelectedQuestion, setScore } = useQuizStore(
+    (state) => state
+  );
+  const [questionNo, setQuestionNo] = useState(1);
+  const [answer, setAnswer] = useState("");
+  const [isSubmit, setIsSubmit] = useState(false);
+
   const { classes, cx } = contentStyles();
+
+  const totalQuestion = quiz?.questions.length;
+
+  useEffect(() => {
+    if (quiz) {
+      const selectedQuestion = getQuestionByIndex(quiz, questionNo);
+      if (selectedQuestion) setSelectedQuestion(selectedQuestion);
+    }
+  }, [quiz, questionNo, setSelectedQuestion]);
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (questionNo === totalQuestion) return;
+
+    setIsSubmit(true);
+    if (question) setScore(question.answer, answer);
+  };
+
+  const handleNext = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubmit(false);
+    setAnswer("");
+    setQuestionNo((prev) => prev + 1);
+  };
 
   if (!quiz) return;
   return (
@@ -17,17 +50,39 @@ const Quizzes = () => {
         </h2>
       }
     >
-      <article className={cx(classes.root)}></article>
+      <article className={cx(classes.quizContainer)}>
+        <div>
+          <p className={cx(classes.label)}>
+            Question {questionNo} of {totalQuestion}
+          </p>
+          <h3 className={cx(classes.question)}>{question?.question}</h3>
+        </div>
+        <form onSubmit={isSubmit ? handleNext : handleSubmit}>
+          <Answers
+            userAnswer={answer}
+            setUserAnswer={setAnswer}
+            hasSubmit={isSubmit}
+          />
+          <button type="submit" className={cx(classes.submitBtn)}>
+            {isSubmit ? "Next Question" : "Submit answer"}
+          </button>
+        </form>
+      </article>
     </DefaultLayout>
   );
 };
 
 const contentStyles = tss.create({
-  root: {
+  quizContainer: {
     width: "min(var(--screen-size), 100% - 8rem)",
     marginInline: "auto",
-    height: "500px",
-    border: "2px solid lime",
+    // border: "2px solid lime",
+    display: "grid",
+    gap: "4rem",
+    gridTemplateColumns: "repeat(2, 1fr)",
+    "@media only screen and (max-width: 695px)": {
+      gridTemplateColumns: "1fr",
+    },
   },
   title: {
     fontSize: "2.4rem",
@@ -35,6 +90,26 @@ const contentStyles = tss.create({
     alignItems: "center",
     gap: "2rem",
     fontWeight: "500",
+  },
+  label: {
+    color: "var(--text-color-700)",
+    fontSize: "1.8rem",
+    fontStyle: "italic",
+    marginBottom: "2rem",
+  },
+  question: {
+    fontSize: "3.2rem",
+    wordBreak: "break-word",
+  },
+  submitBtn: {
+    width: "100%",
+    padding: "1.5rem 1rem",
+    backgroundColor: "var(--action-btn-color)",
+    borderRadius: "1rem",
+    color: "white",
+    fontWeight: 500,
+    border: 0,
+    fontSize: "2rem",
   },
 });
 export default Quizzes;

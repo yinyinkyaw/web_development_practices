@@ -23,7 +23,8 @@ const DefaultLayout = ({ children, heading }: DefaultLayoutProps) => {
 
 const layoutStyles = tss.create({
   root: {
-    height: "100vh",
+    minHeight: "100vh",
+    height: "max-content",
     position: "relative",
     backgroundColor: "var(--background-color)",
     color: "var(--text-color)",
