@@ -5,11 +5,16 @@ import { getQuizByTitle } from "utils";
 export const useQuizStore = create<QuizState & QuizStoreAction>((set) => ({
   quiz: null,
   question: null,
-  score: 0,
+  score: new Map(),
+  quizComplete: false,
   setQuiz: (title) => set(() => ({ quiz: getQuizByTitle(title) })),
   setSelectedQuestion: (info) => set(() => ({ question: info })),
-  setScore: (correctAns, userAns) =>
+  setScore: (quizId, score) =>
     set((state) => ({
-      score: correctAns === userAns ? state.score + 1 : state.score,
+      score: state.score.set(quizId, score),
+    })),
+  setQuizComplete: (status) =>
+    set(() => ({
+      quizComplete: status,
     })),
 }));

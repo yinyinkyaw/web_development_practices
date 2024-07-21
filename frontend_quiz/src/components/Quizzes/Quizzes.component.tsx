@@ -7,9 +7,8 @@ import { getQuestionByIndex } from "utils";
 import Answers from "../Answer/Answers.component";
 
 const Quizzes = () => {
-  const { quiz, question, setSelectedQuestion, setScore } = useQuizStore(
-    (state) => state
-  );
+  const { quiz, question, setSelectedQuestion, setScore, setQuizComplete } =
+    useQuizStore((state) => state);
   const [questionNo, setQuestionNo] = useState(1);
   const [answer, setAnswer] = useState("");
   const [isSubmit, setIsSubmit] = useState(false);
@@ -20,24 +19,28 @@ const Quizzes = () => {
 
   useEffect(() => {
     if (quiz) {
-      const selectedQuestion = getQuestionByIndex(quiz, questionNo);
+      const selectedQuestion = getQuestionByIndex(quiz, questionNo - 1);
       if (selectedQuestion) setSelectedQuestion(selectedQuestion);
     }
   }, [quiz, questionNo, setSelectedQuestion]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (questionNo === totalQuestion) return;
-
     setIsSubmit(true);
-    if (question) setScore(question.answer, answer);
+    if (question)
+      setScore(`quiz ${questionNo}`, answer === question.answer ? 1 : 0);
+
+    if (questionNo === totalQuestion) {
+      setQuizComplete(true);
+    }
   };
 
   const handleNext = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSubmit(false);
     setAnswer("");
-    setQuestionNo((prev) => prev + 1);
+    if (totalQuestion)
+      setQuestionNo((prev) => (prev < totalQuestion ? prev + 1 : prev));
   };
 
   if (!quiz) return;
