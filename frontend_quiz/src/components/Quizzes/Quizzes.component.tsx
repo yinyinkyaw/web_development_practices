@@ -2,10 +2,11 @@ import DefaultLayout from "layout/DefaultLayout";
 import { useQuizStore } from "store/quiz/quizStore";
 import { tss } from "tss-react";
 import QuizSubjectIcon from "../QuizSubjectIcon/QuizSubjectIcon.component";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { getQuestionByIndex } from "utils";
 import Answers from "../Answer/Answers.component";
 import Progress from "../Progress/Progress.component";
+import { shuffle } from "lodash";
 
 const Quizzes = () => {
   const { quiz, question, setSelectedQuestion, setScore, setQuizComplete } =
@@ -18,12 +19,20 @@ const Quizzes = () => {
 
   const totalQuestion = quiz?.questions.length;
 
+  const shuffleQuestions = useMemo(() => {
+    if (!quiz || !Array.isArray(quiz.questions)) return [];
+    return shuffle(quiz?.questions);
+  }, [quiz]);
+
   useEffect(() => {
-    if (quiz) {
-      const selectedQuestion = getQuestionByIndex(quiz, questionNo - 1);
+    if (shuffleQuestions) {
+      const selectedQuestion = getQuestionByIndex(
+        shuffleQuestions,
+        questionNo - 1
+      );
       if (selectedQuestion) setSelectedQuestion(selectedQuestion);
     }
-  }, [quiz, questionNo, setSelectedQuestion]);
+  }, [shuffleQuestions, questionNo, setSelectedQuestion]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction } from "react";
+import { shuffle } from "lodash";
+import { Dispatch, SetStateAction, useMemo } from "react";
 import { useQuizStore } from "store/quiz/quizStore";
 import { tss } from "tss-react";
 
@@ -10,7 +11,10 @@ interface AnswersProps {
 const Answers = ({ userAnswer, hasSubmit, setUserAnswer }: AnswersProps) => {
   const { question } = useQuizStore((state) => state);
 
-  const answerOptions = question?.options;
+  const answerOptions = useMemo(
+    () => shuffle(question?.options),
+    [question?.options]
+  );
   const { classes, css, cx } = answerStyles();
 
   return (
