@@ -1,6 +1,6 @@
 import { tss } from "tss-react";
-import DarkBackgroundImage from "@/images/pattern-background-desktop-dark.svg";
-import LightBackgroundImage from "@/images/pattern-background-desktop-light.svg";
+import BackgroundImageDark from "@/components/BackgroundImageDark/BackgroundImageDark.component";
+import BackgroundImageLight from "@/components/BackgroundImageLight/BackgroundImageLight.component";
 import ThemeSwitcher from "@/components/ThemeSwitcher/ThemeSwitcher.component";
 import { useThemeStore } from "store/theme/themeStore";
 
@@ -23,7 +23,7 @@ const DefaultLayout = ({ children, heading }: DefaultLayoutProps) => {
         {children}
       </div>
       <div className={cx(classes.imageContainer)}>
-        {theme === "dark" ? <DarkBackgroundImage /> : <LightBackgroundImage />}
+        {theme === "dark" ? <BackgroundImageDark /> : <BackgroundImageLight />}
       </div>
     </section>
   );
