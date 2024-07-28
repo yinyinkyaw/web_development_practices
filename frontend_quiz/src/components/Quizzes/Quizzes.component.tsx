@@ -5,6 +5,7 @@ import QuizSubjectIcon from "../QuizSubjectIcon/QuizSubjectIcon.component";
 import { FormEvent, useEffect, useState } from "react";
 import { getQuestionByIndex } from "utils";
 import Answers from "../Answer/Answers.component";
+import Progress from "../Progress/Progress.component";
 
 const Quizzes = () => {
   const { quiz, question, setSelectedQuestion, setScore, setQuizComplete } =
@@ -54,11 +55,14 @@ const Quizzes = () => {
       }
     >
       <article className={cx(classes.quizContainer)}>
-        <div>
-          <p className={cx(classes.label)}>
-            Question {questionNo} of {totalQuestion}
-          </p>
-          <h3 className={cx(classes.question)}>{question?.question}</h3>
+        <div className={classes.questionContainer}>
+          <div>
+            <p className={cx(classes.label)}>
+              Question {questionNo} of {totalQuestion}
+            </p>
+            <h3 className={cx(classes.question)}>{question?.question}</h3>
+          </div>
+          <Progress current={questionNo} total={totalQuestion ?? 1} />
         </div>
         <form onSubmit={isSubmit ? handleNext : handleSubmit}>
           <Answers
@@ -86,6 +90,12 @@ const contentStyles = tss.create({
     "@media only screen and (max-width: 695px)": {
       gridTemplateColumns: "1fr",
     },
+  },
+  questionContainer: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    paddingBottom: "10rem",
   },
   title: {
     fontSize: "2.4rem",
