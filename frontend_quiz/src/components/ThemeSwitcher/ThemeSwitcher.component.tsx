@@ -4,7 +4,7 @@ import DarkMoonIcon from "@/icons/icon-moon-dark.svg";
 import LightMoonIcon from "@/icons/icon-moon-light.svg";
 import { useEffect, useState } from "react";
 import { tss } from "tss-react";
-import { useThemeStore } from "store/theme/themeStore";
+import { useThemeStore } from "@/store/theme/themeStore";
 
 const ThemeSwitcher = () => {
   const { theme, setTheme } = useThemeStore((state) => state);
@@ -30,7 +30,7 @@ const ThemeSwitcher = () => {
 
   return (
     <div className={cx(classes.container)}>
-      {theme === "dark" ? <LightSunIcon /> : <DarkSunIcon />}
+      {theme === "dark" ? <DarkSunIcon /> : <LightSunIcon />}
       <label className={cx(classes.switch)}>
         <input
           type="checkbox"
@@ -39,7 +39,7 @@ const ThemeSwitcher = () => {
         />
         <span className={cx(classes.slider)} />
       </label>
-      {theme === "dark" ? <LightMoonIcon /> : <DarkMoonIcon />}
+      {theme === "dark" ? <DarkMoonIcon /> : <LightMoonIcon />}
     </div>
   );
 };
