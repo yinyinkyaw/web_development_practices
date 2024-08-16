@@ -3,7 +3,7 @@ import { Quiz, Subject } from "@/interfaces/quiz";
 import DefaultLayout from "layout/DefaultLayout";
 import { useQuizStore } from "store/quiz/quizStore";
 import { getSubjects } from "utils";
-import QuizSubjectIcon from "../QuizSubjectIcon/QuizSubjectIcon.component";
+import SubjectCard from "./SubjectCard.component";
 
 const FrontendSelection = () => {
   const { setQuiz } = useQuizStore((state) => state);
@@ -36,24 +36,6 @@ const FrontendSelection = () => {
         </div>
       </div>
     </DefaultLayout>
-  );
-};
-
-const SubjectCard = ({
-  icon,
-  text,
-  handleSelect,
-}: {
-  icon: React.ReactNode;
-  text: Subject;
-  handleSelect: () => void;
-}) => {
-  const { classes, cx } = styles.subjectStyles({ type: text });
-  return (
-    <div className={cx(classes.card)} onClick={handleSelect}>
-      <QuizSubjectIcon title={text} icon={icon} />
-      <p>{text}</p>
-    </div>
   );
 };
 

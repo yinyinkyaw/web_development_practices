@@ -8,7 +8,11 @@ interface Props {
 
 const QuizSubjectIcon = ({ title, icon }: Props) => {
   const { classes, cx } = iconStyles({ type: title as Subject });
-  return <div className={cx(classes.root)}>{icon}</div>;
+  return (
+    <div data-test-id="background" className={cx(classes.root)}>
+      {icon}
+    </div>
+  );
 };
 
 const iconStyles = tss.withParams<{ type: Subject }>().create(({ type }) => ({
