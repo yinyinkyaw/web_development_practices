@@ -1,0 +1,15 @@
+.empty_container {
+  display: grid;
+  row-gap: 1.6rem;
+  place-content: center;
+  background-color: hsl(var(--slate-900));
+  border-bottom-left-radius: 6.8rem;
+  color: hsl(var(--slate-300));
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 1.5;
+
+  & > svg {
+    margin-inline: auto;
+  }
+}
